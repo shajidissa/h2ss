@@ -18,14 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: .   # your index.html is at repo root
-      - name: Deploy to GitHub Pages
-        id: deploy
+          path: .           # your index.html is at repo root
+      - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          cname: h2ss.co.uk # sets the custom domain for you
