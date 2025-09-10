@@ -27,4 +27,4 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
         with:
-          cname: h2ss.co.uk # sets the custom domain for you
+          cname: www.h2ss.co.uk # sets the custom domain for you
