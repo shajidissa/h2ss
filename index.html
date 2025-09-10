@@ -1,65 +1,87 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>H2 Software Solutions Ltd · Shajid Issa — CV & Tech Stack</title>
-    <meta name="description" content="H2 Software Solutions Ltd — Professional profile for Shajid (Saj) Issa. Download CV and explore technologies used: Java, Spring Boot, AWS, Docker/Kubernetes, Kafka, and more." />
+    <title>H2 Software Solutions Ltd · Shajid (Saj) Issa — CV & Tech Stack</title>
+    <meta name="description" content="Professional profile of Shajid Issa. Download CV and explore core technologies: Java, Spring Boot, AWS, Docker/Kubernetes, Kafka and more." />
     <link rel="canonical" href="https://h2ss.co.uk/" />
-    <meta property="og:title" content="H2 Software Solutions Ltd · Shajid Issa — CV & Tech Stack" />
-    <meta property="og:description" content="Download CV and explore the technologies we use across backend, cloud, DevOps and data." />
+    <meta property="og:title" content="H2 Software Solutions Ltd · Shajid Issa" />
+    <meta property="og:description" content="CV, skills, clients and selected work." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://h2ss.co.uk/" />
     <meta name="theme-color" content="#0ea5e9" />
 
-    <!-- Bootstrap 5.3 (CSS + Icons) -->
+    <!-- Preload hero for faster LCP -->
+    <link rel="preload" as="image" href="assets/images/slider/img1.png" />
+
+    <!-- Bootstrap 5.3 + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Devicon (developer tech icons) -->
+    <!-- Devicon (tech logos) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"/>
 
     <link rel="icon" href="assets/images/ico/favicon.ico">
 
     <style>
         :root{
-            --brand:#0ea5e9; /* sky-500 */
-            --brand-dark:#0284c7; /* sky-600 */
-            --bg:#0b1220; /* slate-950 (dark hero) */
-            --fg:#0f172a; /* slate-900 */
+            --brand:#0ea5e9;          /* sky-500 */
+            --brand-dark:#0369a1;     /* sky-700 */
         }
 
+
         html{scroll-behavior:smooth}
-        body{font-feature-settings:"liga" on, "tnum" on;}
+        section{scroll-margin-top:80px; padding:4rem 0}
 
-        /* Hero */
-        .hero{background:radial-gradient(1200px 600px at 10% -10%, rgba(14,165,233,.25), transparent),
-        radial-gradient(1200px 600px at 110% 10%, rgba(2,132,199,.25), transparent),
-        var(--bg);
-            color:white}
-        .hero a.btn-primary{background:var(--brand); border-color:var(--brand)}
-        .hero a.btn-primary:hover{background:var(--brand-dark); border-color:var(--brand-dark)}
+        /* NAV */
+        .navbar{backdrop-filter:saturate(140%) blur(8px)}
+        .navbar.filled{background-color: rgba(255,255,255,0.9)}
+        [data-bs-theme="dark"] .navbar.filled{background-color: rgba(15,23,42,0.9)}
 
-        /* Cards */
-        .tech-card{transition: transform .2s ease, box-shadow .2s ease}
-        .tech-card:hover{transform: translateY(-4px); box-shadow: 0 .75rem 1.25rem rgba(0,0,0,.12)}
+        /* HERO */
+        .hero{position:relative; color:#fff; background:#0b1220}
+        .hero::before{content:""; position:absolute; inset:0; background:var(--hero-overlay), url('assets/images/slider/img1.png') center/cover no-repeat;}
+        .hero>.container{position:relative; z-index:1}
+        .hero::before{
+            content:""; position:absolute; inset:0;
+            background:
+                    radial-gradient(1000px 500px at 5% 0%, rgba(14,165,233,.35), transparent 60%),
+                    radial-gradient(800px 400px at 95% 20%, rgba(2,132,199,.35), transparent 60%),
+                    radial-gradient(900px 450px at 50% 100%, rgba(56,189,248,.25), transparent 60%),
+                    linear-gradient(135deg, #0b1220 0%, #0f172a 40%, #0b1220 100%);
+        }
 
-        /* Badge grid */
-        .skill-badge{font-weight:600; border:1px solid rgba(0,0,0,.08)}
+        .profile-card{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15)}
+        [data-bs-theme="light"] .profile-card{background:rgba(255,255,255,.6); border-color:rgba(0,0,0,.05)}
 
-        /* Footer */
+        /* CARDS */
+        .hover-lift{transition:transform .18s ease, box-shadow .18s ease}
+        .hover-lift:hover{transform: translateY(-4px); box-shadow:0 .75rem 1.5rem rgba(0,0,0,.12)}
+
+        /* SKILL BADGES */
+        .skill-badge{border:1px solid rgba(0,0,0,.08); font-weight:600}
+
+        /* CLIENT LOGOS */
+        .logo-grid img{filter: grayscale(90%); opacity:.8; transition: all .2s}
+        .logo-grid img:hover{filter:none; opacity:1}
+
+        /* FOOTER */
         footer{background:#0b1220; color:#cbd5e1}
-        footer a{color:#93c5fd}
+        footer a{color:#93c5fd; text-decoration:none}
 
-        /* Section spacing */
-        section{padding: 4rem 0}
+        /* Floating CV button */
+        .fab{position:fixed; right:1rem; bottom:1rem; z-index:1030}
 
-        /* 404 (included below as separate file template) */
+        .avatar{ width:96px; height:96px; border-radius:50%; overflow:hidden;
+            background:#fff; border:2px solid rgba(255,255,255,.6);
+            box-shadow:0 4px 12px rgba(0,0,0,.12); }
+        .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
     </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
+<nav class="navbar navbar-expand-lg border-bottom sticky-top bg-body-tertiary">
     <div class="container">
         <a class="navbar-brand fw-semibold" href="#home"><i class="bi bi-boxes me-2 text-primary"></i>H2 Software Solutions Ltd</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,35 +90,55 @@
         <div class="collapse navbar-collapse" id="nav">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Tech Stack</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">Highlights</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#clients">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#software">Software</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item ms-lg-2"><a class="btn btn-sm btn-primary" href="assets/cv/CV.pdf" target="_blank" rel="noopener">Download CV</a></li>
+                <li class="nav-item ms-lg-2 d-none d-lg-block"><a class="btn btn-sm btn-primary" href="assets/cv/CV.pdf" target="_blank" rel="noopener"><i class="bi bi-filetype-pdf me-2"></i>Download CV</a></li>
             </ul>
+            <div class="d-flex ms-lg-3 align-items-center gap-2">
+                <button id="themeToggle" class="btn btn-outline-secondary btn-sm" aria-label="Toggle dark mode"><i class="bi bi-moon-stars"></i></button>
+            </div>
         </div>
     </div>
 </nav>
 
 <!-- HERO -->
-<header class="hero" id="home">
+<header class="hero py-5" id="home">
     <div class="container">
-        <div class="row align-items-center py-5 g-4">
-            <div class="col-12 col-lg-7">
-                <p class="text-uppercase text-info-emphasis small mb-2">Software Engineering · Consulting</p>
-                <h1 class="display-5 fw-bold mb-3">Shajid (Saj) Issa</h1>
-                <p class="lead mb-4">Senior Java / Spring engineer and solution architect. I build robust backend platforms, cloud-native services, and integrations for healthcare and research. </p>
+        <div class="row align-items-center g-4">
+            <div class="col-12 col-lg-7 text-white">
+                <p class="text-uppercase small mb-2">Software Engineering · Consulting</p>
+                <h1 class="display-5 fw-bold mb-2">Shajid (Saj) Issa</h1>
+                <p class="lead mb-4">Java & Spring specialist · Solution Architect · Team Lead. I build robust, secure services and integrations for health & research.</p>
                 <div class="d-flex flex-wrap gap-2">
-                    <a class="btn btn-primary btn-lg" href="assets/cv/CV.pdf" target="_blank" rel="noopener"><i class="bi bi-filetype-pdf me-2"></i>Download CV</a>
-                    <a class="btn btn-outline-light btn-lg" href="#skills"><i class="bi bi-lightning-charge me-2"></i>See technologies</a>
-                </div>
-                <div class="d-flex gap-3 mt-4">
-                    <a class="text-decoration-none" href="mailto:saj.issa@gmail.com"><i class="bi bi-envelope-at fs-4"></i><span class="visually-hidden">Email</span></a>
-                    <a class="text-decoration-none" href="https://www.linkedin.com/in/sajissa" target="_blank" rel="noopener"><i class="bi bi-linkedin fs-4"></i><span class="visually-hidden">LinkedIn</span></a>
-                    <a class="text-decoration-none" href="https://github.com/shajidissa" target="_blank" rel="noopener"><i class="bi bi-github fs-4"></i><span class="visually-hidden">GitHub</span></a>
+                    <a class="btn btn-primary btn-lg" href="assets/cv/CV.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-arrow-down me-2"></i>Download CV</a>
+                    <a class="btn btn-outline-light btn-lg" href="#skills"><i class="bi bi-lightning-charge me-2"></i>Explore skills</a>
                 </div>
             </div>
-            <div class="col-12 col-lg-5 text-center">
-                <img class="img-fluid rounded-4 shadow" src="assets/images/slider/img1.png" alt="Illustration of backend/cloud architecture" />
+            <div class="col-12 col-lg-5">
+                <div class="card profile-card border-0 rounded-4 shadow-lg overflow-hidden">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-5 p-3 text-center">
+                            <div class="avatar mx-auto">
+                                <img
+                                        src="assets/images/profile.jpg"
+                                        srcset="assets/images/profile.jpg 1x, assets/images/slider/img1.png 2x"
+                                        alt="Shajid Issa" width="96" height="96" loading="eager" fetchpriority="high">
+                            </div>
+                        </div>
+                        <div class="col-7 p-3">
+                            <div class="small opacity-75">Based in UK</div>
+                            <div class="fw-semibold">Available for consulting</div>
+                            <div class="d-flex gap-3 mt-2">
+                                <a class="text-white" href="mailto:saj.issa@gmail.com" aria-label="Email"><i class="bi bi-envelope-at fs-5"></i></a>
+                                <a class="text-white" href="https://www.linkedin.com/in/sajissa" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin fs-5"></i></a>
+                                <a class="text-white" href="https://github.com/shajidissa" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github fs-5"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -108,39 +150,36 @@
         <div class="row g-4 align-items-center">
             <div class="col-lg-6">
                 <h2 class="fw-bold mb-3">About</h2>
-                <p class="lead">I design and deliver resilient services in regulated environments. Recent work spans NHS integrations (HL7/Nerve Centre), data pipelines, and platform automation with GitHub Actions.</p>
+                <p class="lead">I deliver resilient services in regulated environments. Work spans NHS integrations (HL7 / Nerve Centre), data pipelines, automation and developer platforms.</p>
                 <ul class="list-unstyled small mt-3">
-                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Backend APIs with <strong>Java 17+</strong>, <strong>Spring Boot 3</strong>, security best practices.</li>
-                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Cloud-first on <strong>AWS</strong> (EC2/ECS/Fargate/S3/CloudFront), occasionally GCP.</li>
+                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i><strong>Java 17+</strong>, <strong>Spring Boot</strong>, security best practices.</li>
+                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i><strong>AWS</strong> (EC2/ECS/Fargate/S3/CloudFront), GitHub Actions CI/CD.</li>
                     <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Containers & orchestration: <strong>Docker</strong>, <strong>Kubernetes</strong>.</li>
-                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Messaging and data: <strong>Kafka</strong>, <strong>PostgreSQL</strong>, <strong>MySQL</strong>, <strong>MongoDB</strong>.</li>
+                    <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Messaging & data: <strong>Kafka</strong>, <strong>PostgreSQL</strong>, <strong>Redis</strong>.</li>
                 </ul>
-                <a href="#projects" class="btn btn-outline-primary">See work highlights</a>
             </div>
             <div class="col-lg-6">
                 <div class="row g-3">
                     <div class="col-6">
-                        <div class="p-4 border rounded-4 h-100">
+                        <div class="p-4 border rounded-4 h-100 text-center">
                             <div class="text-muted small">Experience</div>
-                            <div class="h2 fw-bold">15+ yrs</div>
-                            <div class="small">Consulting & engineering</div>
+                            <div class="h2 fw-bold">20+ yrs</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-4 border rounded-4 h-100">
+                        <div class="p-4 border rounded-4 h-100 text-center">
                             <div class="text-muted small">Domains</div>
-                            <div class="h2 fw-bold">Health, Research</div>
-                            <div class="small">NHS · Academia</div>
+                            <div class="h2 fw-bold">Health & Research</div>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="p-4 border rounded-4 h-100">
-                            <div class="text-muted small mb-1">Recent clients</div>
-                            <div class="d-flex flex-wrap gap-3 align-items-center opacity-75">
-                                <img src="assets/images/portfolio/recent/nhs.png" alt="NHS" height="28">
-                                <img src="assets/images/portfolio/recent/uol.png" alt="University of Leicester" height="28">
-                                <img src="assets/images/portfolio/recent/genome.png" alt="Genomics" height="28">
-                                <img src="assets/images/portfolio/recent/ibm.png" alt="IBM" height="28">
+                            <div class="text-muted small mb-1">Recent</div>
+                            <div class="d-flex flex-wrap gap-3 align-items-center opacity-75 logo-grid">
+                                <img src="assets/images/portfolio/recent/nhs.png" alt="NHS" height="28" loading="lazy">
+                                <img src="assets/images/portfolio/recent/uol.png" alt="University of Leicester" height="28" loading="lazy">
+                                <img src="assets/images/portfolio/recent/genome.png" alt="Genomics" height="28" loading="lazy">
+                                <img src="assets/images/portfolio/recent/ibm.png" alt="IBM" height="28" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -150,43 +189,68 @@
     </div>
 </section>
 
-<!-- SKILLS / TECH STACK -->
+<!-- SKILLS -->
 <section id="skills" class="bg-body-tertiary">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Technologies</h2>
-            <p class="text-muted">A snapshot of tools used across delivery.</p>
+            <h2 class="fw-bold">Skills</h2>
+            <p class="text-muted">I have deep skills in the following</p>
         </div>
         <div class="row g-4">
-            <!-- Backend -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card tech-card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
                     <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="devicon-java-plain colored fs-2 me-2"></i>
-                            <h5 class="mb-0">Backend</h5>
-                        </div>
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-code fs-3 text-primary me-2"></i><h5 class="mb-0">Languages</h5></div>
                         <div class="d-flex flex-wrap gap-2">
-                            <span class="badge text-bg-light skill-badge">Java 17+</span>
-                            <span class="badge text-bg-light skill-badge">Spring Boot 3</span>
-                            <span class="badge text-bg-light skill-badge">REST APIs</span>
-                            <span class="badge text-bg-light skill-badge">Security</span>
-                            <span class="badge text-bg-light skill-badge">JPA/Hibernate</span>
+                            <span class="badge text-bg-light skill-badge">Java</span>
+                            <span class="badge text-bg-light skill-badge">SQL</span>
+                            <span class="badge text-bg-light skill-badge">Bash</span>
+                            <span class="badge text-bg-light skill-badge">HTML/CSS/JS</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Cloud/DevOps -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card tech-card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
                     <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="devicon-amazonwebservices-plain colored fs-2 me-2"></i>
-                            <h5 class="mb-0">Cloud & DevOps</h5>
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-diagram-3 fs-3 text-primary me-2"></i><h5 class="mb-0">Frameworks</h5></div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge text-bg-light skill-badge">Spring Boot</span>
+                            <span class="badge text-bg-light skill-badge">JPA/Hibernate</span>
+                            <span class="badge text-bg-light skill-badge">REST</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-cloud fs-3 text-primary me-2"></i><h5 class="mb-0">Cloud</h5></div>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge text-bg-light skill-badge">AWS</span>
                             <span class="badge text-bg-light skill-badge">GCP</span>
+                            <span class="badge text-bg-light skill-badge">CloudFront</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-hdd-network fs-3 text-primary me-2"></i><h5 class="mb-0">Data/Messaging</h5></div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge text-bg-light skill-badge">Kafka</span>
+                            <span class="badge text-bg-light skill-badge">PostgreSQL</span>
+                            <span class="badge text-bg-light skill-badge">Redis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-box-seam fs-3 text-primary me-2"></i><h5 class="mb-0">DevOps</h5></div>
+                        <div class="d-flex flex-wrap gap-2">
                             <span class="badge text-bg-light skill-badge">Docker</span>
                             <span class="badge text-bg-light skill-badge">Kubernetes</span>
                             <span class="badge text-bg-light skill-badge">GitHub Actions</span>
@@ -195,66 +259,33 @@
                     </div>
                 </div>
             </div>
-            <!-- Data/Messaging -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card tech-card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
                     <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="devicon-apachekafka-plain colored fs-2 me-2"></i>
-                            <h5 class="mb-0">Data & Messaging</h5>
-                        </div>
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-braces-asterisk fs-3 text-primary me-2"></i><h5 class="mb-0">Frontend</h5></div>
                         <div class="d-flex flex-wrap gap-2">
-                            <span class="badge text-bg-light skill-badge">Kafka</span>
-                            <span class="badge text-bg-light skill-badge">PostgreSQL</span>
-                            <span class="badge text-bg-light skill-badge">MySQL</span>
-                            <span class="badge text-bg-light skill-badge">MongoDB</span>
-                            <span class="badge text-bg-light skill-badge">Redis</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Frontend -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card tech-card h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="devicon-bootstrap-plain colored fs-2 me-2"></i>
-                            <h5 class="mb-0">Frontend</h5>
-                        </div>
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="badge text-bg-light skill-badge">HTML5</span>
-                            <span class="badge text-bg-light skill-badge">CSS3</span>
                             <span class="badge text-bg-light skill-badge">Bootstrap 5</span>
                             <span class="badge text-bg-light skill-badge">Vanilla JS</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Testing -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card tech-card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
                     <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-shield-check fs-2 text-primary me-2"></i>
-                            <h5 class="mb-0">Quality</h5>
-                        </div>
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-shield-check fs-3 text-primary me-2"></i><h5 class="mb-0">Quality</h5></div>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge text-bg-light skill-badge">JUnit</span>
                             <span class="badge text-bg-light skill-badge">Mockito</span>
                             <span class="badge text-bg-light skill-badge">Testcontainers</span>
-                            <span class="badge text-bg-light skill-badge">REST Assured</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Tools -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card tech-card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card hover-lift h-100">
                     <div class="card-body">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-wrench-adjustable-circle fs-2 text-primary me-2"></i>
-                            <h5 class="mb-0">Tooling</h5>
-                        </div>
+                        <div class="d-flex align-items-center mb-2"><i class="bi bi-wrench-adjustable-circle fs-3 text-primary me-2"></i><h5 class="mb-0">Tooling</h5></div>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge text-bg-light skill-badge">Maven</span>
                             <span class="badge text-bg-light skill-badge">Gradle</span>
@@ -268,46 +299,92 @@
     </div>
 </section>
 
-<!-- PROJECT HIGHLIGHTS -->
-<section id="projects">
+<!-- CLIENTS -->
+<section id="clients">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Selected Work</h2>
-            <p class="text-muted">A few compact highlights from recent delivery.</p>
+            <h2 class="fw-bold">Clients</h2>
+            <p class="text-muted">I have worked with the following clients</p>
+        </div>
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4 logo-grid text-center align-items-center">
+            <div class="col"><img class="img-fluid" src="assets/images/portfolio/recent/nhs.png" alt="NHS" loading="lazy"></div>
+            <div class="col"><img class="img-fluid" src="assets/images/portfolio/recent/uol.png" alt="University of Leicester" loading="lazy"></div>
+            <div class="col"><img class="img-fluid" src="assets/images/portfolio/recent/harvard.png" alt="Harvard" loading="lazy"></div>
+            <div class="col"><img class="img-fluid" src="assets/images/portfolio/recent/ibm.png" alt="IBM" loading="lazy"></div>
+            <div class="col"><img class="img-fluid" src="assets/images/portfolio/recent/jisc.png" alt="Jisc" loading="lazy"></div>
+            <div class="col"><img class="img-fluid" src="assets/images/portfolio/recent/lcc.png" alt="Leicestershire County Council" loading="lazy"></div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="bg-body-tertiary">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Service</h2>
+            <p class="text-muted">Focus on outcome‑oriented development and integration</p>
         </div>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 hover-lift">
                     <div class="card-body">
-                        <h5 class="card-title">PLCM Extract & NHS Data Flows</h5>
-                        <p class="card-text">Spring Boot service generating Excel exports with patient demographics integration. Background job orchestration and secure audit logging.</p>
-                        <span class="badge text-bg-secondary">Spring Boot</span>
-                        <span class="badge text-bg-secondary">Excel</span>
-                        <span class="badge text-bg-secondary">NHS APIs</span>
+                        <i class="bi bi-gear-wide-connected fs-2 text-primary"></i>
+                        <h5 class="mt-2">Development</h5>
+                        <p class="small text-muted">Robust backends, APIs and data flows with strong security.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 hover-lift">
                     <div class="card-body">
-                        <h5 class="card-title">Cloud Infra Automation</h5>
-                        <p class="card-text">GitHub Actions pipelines for static sites and microservices. IaC baselines with Terraform and reusable workflows.</p>
-                        <span class="badge text-bg-secondary">GitHub Actions</span>
-                        <span class="badge text-bg-secondary">Terraform</span>
-                        <span class="badge text-bg-secondary">AWS</span>
+                        <i class="bi bi-diagram-3 fs-2 text-primary"></i>
+                        <h5 class="mt-2">Integration</h5>
+                        <p class="small text-muted">Event-driven and batch integrations across platforms.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 hover-lift">
                     <div class="card-body">
-                        <h5 class="card-title">Event-Driven Integrations</h5>
-                        <p class="card-text">Kafka-backed pipelines for reliable, scalable data movement between systems with dead-letter queues and idempotent consumers.</p>
-                        <span class="badge text-bg-secondary">Kafka</span>
-                        <span class="badge text-bg-secondary">Microservices</span>
+                        <i class="bi bi-cloud-check fs-2 text-primary"></i>
+                        <h5 class="mt-2">Cloud & CI/CD</h5>
+                        <p class="small text-muted">Automated, reproducible deployments with IaC.</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 hover-lift">
+                    <div class="card-body">
+                        <i class="bi bi-clipboard2-check fs-2 text-primary"></i>
+                        <h5 class="mt-2">Testing</h5>
+                        <p class="small text-muted">Contract tests, integration tests & observability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOFTWARE LOGOS -->
+<section id="software">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Software</h2>
+            <p class="text-muted">Experience of the following software</p>
+        </div>
+        <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-8 g-3 logo-grid text-center align-items-center">
+            <div class="col"><i class="devicon-apachekafka-plain colored fs-1" aria-label="Kafka"></i></div>
+            <div class="col"><i class="devicon-spring-plain colored fs-1" aria-label="Spring"></i></div>
+            <div class="col"><i class="devicon-amazonwebservices-plain colored fs-1" aria-label="AWS"></i></div>
+            <div class="col"><i class="devicon-docker-plain colored fs-1" aria-label="Docker"></i></div>
+            <div class="col"><i class="devicon-kubernetes-plain colored fs-1" aria-label="Kubernetes"></i></div>
+            <div class="col"><i class="devicon-postgresql-plain colored fs-1" aria-label="PostgreSQL"></i></div>
+            <div class="col"><i class="devicon-mysql-plain colored fs-1" aria-label="MySQL"></i></div>
+            <div class="col"><i class="devicon-mongodb-plain colored fs-1" aria-label="MongoDB"></i></div>
+            <div class="col"><i class="devicon-redis-plain colored fs-1" aria-label="Redis"></i></div>
+            <div class="col"><i class="devicon-git-plain colored fs-1" aria-label="Git"></i></div>
+            <div class="col"><i class="devicon-intellij-plain colored fs-1" aria-label="IntelliJ"></i></div>
+            <div class="col"><i class="devicon-ubuntu-plain colored fs-1" aria-label="Ubuntu"></i></div>
         </div>
     </div>
 </section>
@@ -318,7 +395,7 @@
         <div class="row g-4 align-items-center">
             <div class="col-lg-6">
                 <h2 class="fw-bold mb-3">Get in touch</h2>
-                <p class="text-muted">Open to consulting and collaborations. Prefer email or LinkedIn for a quick response.</p>
+                <p class="text-muted">Open to consulting and collaborations.</p>
                 <ul class="list-unstyled">
                     <li class="mb-2"><i class="bi bi-envelope me-2 text-primary"></i><a class="text-decoration-none" href="mailto:saj.issa@gmail.com">saj.issa@gmail.com</a></li>
                     <li class="mb-2"><i class="bi bi-telephone me-2 text-primary"></i><a class="text-decoration-none" href="tel:+447703332511">+44 7703 332511</a></li>
@@ -339,9 +416,9 @@
                         <label for="message" class="form-label">Message</label>
                         <textarea id="message" name="message" rows="4" class="form-control" required></textarea>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 d-flex align-items-center gap-2">
                         <button class="btn btn-primary" type="submit"><i class="bi bi-send me-2"></i>Send</button>
-                        <span class="text-muted small ms-2">This uses your email client. Replace with a backend/API if needed.</span>
+                        <a class="btn btn-outline-secondary" href="mailto:saj.issa@gmail.com?subject=Hello%20Saj">Open in email app</a>
                     </div>
                 </form>
             </div>
@@ -353,37 +430,47 @@
 <footer class="py-4">
     <div class="container d-flex flex-wrap justify-content-between align-items-center">
         <p class="mb-0 small">© <span id="year"></span> H2 Software Solutions Ltd</p>
-        <div class="d-flex gap-3">
-            <a href="#home" class="text-decoration-none"><i class="bi bi-arrow-up-circle"></i> Back to top</a>
+        <div class="d-flex gap-3 small">
+            <a href="#home"><i class="bi bi-arrow-up-circle me-1"></i>Back to top</a>
         </div>
     </div>
 </footer>
 
-<!-- JSON-LD (Person/Organization) -->
+<!-- Floating CV button on mobile -->
+<a class="btn btn-primary fab d-lg-none" href="assets/cv/CV.pdf" target="_blank" rel="noopener" aria-label="Download CV"><i class="bi bi-filetype-pdf"></i></a>
+
+<!-- Structured data -->
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "H2 Software Solutions Ltd",
         "url": "https://h2ss.co.uk/",
-        "logo": "https://h2ss.co.uk/assets/images/logo.png",
-        "sameAs": [
-            "https://www.linkedin.com/in/sajissa",
-            "https://github.com/shajidissa"
-        ],
-        "employee": {
-            "@type": "Person",
-            "name": "Shajid Issa",
-            "jobTitle": "Software Engineer / Architect",
-            "email": "mailto:saj.issa@gmail.com"
-        }
+        "sameAs": ["https://github.com/shajidissa","https://www.linkedin.com/in/sajissa"],
+        "employee": {"@type": "Person", "name": "Shajid Issa", "jobTitle":"Software Engineer / Architect"}
     }
 </script>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    // update year
+    // Persisted theme toggle
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const key = 'h2ss-theme';
+    const saved = localStorage.getItem(key);
+    if (saved === 'dark') document.documentElement.setAttribute('data-bs-theme','dark');
+    btn.addEventListener('click',()=>{
+        const next = root.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-bs-theme', next); localStorage.setItem(key,next);
+    });
+
+    // Navbar fill on scroll
+    const nav = document.querySelector('.navbar');
+    const fill = () => nav.classList.toggle('filled', window.scrollY>24);
+    fill(); window.addEventListener('scroll', fill);
+
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
